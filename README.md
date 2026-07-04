@@ -380,3 +380,126 @@ nmcli device status
 ip addr
 ip route
 ```
+
+# Enable VNC on Raspberry Pi and Connect from Linux
+
+## 1. Enable VNC on Raspberry Pi
+
+Open Raspberry Pi configuration:
+
+```bash
+sudo raspi-config
+```
+
+Go to:
+
+```text
+Interface Options
+└── VNC
+    └── Yes
+```
+
+Exit `raspi-config`.
+
+Verify that the VNC server is running:
+
+```bash
+sudo systemctl status wayvnc
+```
+
+On older Raspberry Pi OS versions:
+
+```bash
+sudo systemctl status vncserver-x11-serviced
+```
+
+If needed, reboot:
+
+```bash
+sudo reboot
+```
+
+---
+
+## 2. Find the Raspberry Pi IP Address
+
+```bash
+hostname -I
+```
+
+Example:
+
+```text
+192.168.1.1
+```
+
+If mDNS is configured, the Raspberry Pi may also be reachable as:
+
+```text
+raspberrypi.local
+```
+
+or:
+
+```text
+pi4.local
+```
+
+---
+
+## 3. Install TigerVNC Viewer on Linux
+
+Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install tigervnc-viewer
+```
+
+---
+
+## 4. Connect to Raspberry Pi
+
+Using the IP address:
+
+```bash
+vncviewer 192.168.1.1
+```
+
+Using mDNS:
+
+```bash
+vncviewer raspberrypi.local
+```
+
+or:
+
+```bash
+vncviewer pi4.local
+```
+
+You can also start the graphical application:
+
+```bash
+vncviewer
+```
+
+and enter:
+
+```text
+192.168.1.1
+```
+
+or:
+
+```text
+raspberrypi.local
+```
+
+---
+
+## 5. Login
+
+Enter the Raspberry Pi username and password when prompted.
+
+---
