@@ -1,0 +1,12 @@
+[Unit]
+Description=Raspberry Pi Internet Sharing NAT
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pi-internet-share.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
